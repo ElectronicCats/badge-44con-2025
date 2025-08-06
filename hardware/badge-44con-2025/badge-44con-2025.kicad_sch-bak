@@ -4695,7 +4695,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "badge-44con-2025:MODULE_DM-OLED096-636"
 			(at 29.21 111.76 0)
 			(effects
 				(font
@@ -5576,7 +5576,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:Nidec_Copal_CAS-120A"
+		(property "Footprint" "badge-44con-2025:a12013100ux0116"
 			(at 148.59 74.93 0)
 			(effects
 				(font
@@ -5604,11 +5604,12 @@
 			)
 		)
 		(property "provedor" "Amazon"
-			(at 148.59 64.77 0)
+			(at 142.494 65.786 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "manf#" "https://www.amazon.com/gp/product/B007QAJUUS"
@@ -5721,7 +5722,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Buzzer"
+		(property "Value" "CYT1008"
 			(at 88.9 110.49 0)
 			(effects
 				(font
@@ -5730,7 +5731,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Buzzer_Beeper:Buzzer_12x9.5RM7.6"
 			(at 84.455 106.68 90)
 			(effects
 				(font
@@ -7224,7 +7225,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "badge-44con-2025:AD8317"
 			(at 237.49 38.1 0)
 			(effects
 				(font
@@ -7343,11 +7344,12 @@
 			)
 		)
 		(property "provedor" "Amazon"
-			(at 93.98 27.94 0)
+			(at 98.298 31.496 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "manf#" "https://www.amazon.com/gp/product/B0CSW6D1N4"

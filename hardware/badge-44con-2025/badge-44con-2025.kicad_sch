@@ -5117,7 +5117,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "badge-44con-2025:Wemos Mini D1 ESP WiFi + Bluetooth CP2104"
 			(at 54.61 48.26 0)
 			(effects
 				(font
@@ -6013,7 +6013,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 237.49 67.31 0)
 			(effects
 				(font
@@ -6608,7 +6608,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "badge-44con-2025:MT3608"
 			(at 148.59 35.56 0)
 			(effects
 				(font
@@ -7316,7 +7316,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Alps_RK163_Single_Horizontal"
 			(at 93.98 27.94 0)
 			(effects
 				(font
