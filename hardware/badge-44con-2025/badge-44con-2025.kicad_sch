@@ -4756,6 +4756,10 @@
 		(uuid "09103fd2-2725-41ff-a1b1-1db302721014")
 	)
 	(no_connect
+		(at 59.69 154.94)
+		(uuid "0d4418db-b0ca-487e-bdc3-37b01d997a4b")
+	)
+	(no_connect
 		(at 66.04 58.42)
 		(uuid "125ab39f-d42a-4e40-ab25-dee625f435a9")
 	)
@@ -4852,12 +4856,20 @@
 		(uuid "b4fd6d7e-5683-4e14-8620-c0583fc82d7f")
 	)
 	(no_connect
+		(at 59.69 167.64)
+		(uuid "bf934a01-2f2e-4792-8295-0edc830294d8")
+	)
+	(no_connect
 		(at 44.45 35.56)
 		(uuid "c2407594-f5f1-4907-9a92-0478af67bc9c")
 	)
 	(no_connect
 		(at 44.45 50.8)
 		(uuid "c2598823-1857-4a8c-afab-4cdead852018")
+	)
+	(no_connect
+		(at 88.9 160.02)
+		(uuid "c716fa10-1141-4e35-8a4f-c79e70a22b8d")
 	)
 	(no_connect
 		(at 44.45 30.48)
@@ -6189,16 +6201,6 @@
 		)
 		(uuid "121d1d5a-5955-458d-a2d4-ff7f62dffcca")
 	)
-	(label "LED5"
-		(at 88.9 160.02 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "129f0f88-38f7-42f2-bcc9-0bacca1e70f5")
-	)
 	(label "LED"
 		(at 160.02 62.23 0)
 		(effects
@@ -6258,16 +6260,6 @@
 			(justify right bottom)
 		)
 		(uuid "3abcab48-2243-4d7b-ac9c-6a8cc2320e71")
-	)
-	(label "LED7"
-		(at 59.69 154.94 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "4aad03ed-e903-4911-9525-92c1c47b3746")
 	)
 	(label "LED1"
 		(at 88.9 162.56 0)
@@ -6438,16 +6430,6 @@
 			(justify left bottom)
 		)
 		(uuid "ebdaa71f-25a8-4247-8b0a-00eadedcbdbe")
-	)
-	(label "LED6"
-		(at 59.69 167.64 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "f0fcdebb-b58b-4c73-867f-1b2e20cc59bc")
 	)
 	(label "BUZZER"
 		(at 80.01 106.68 180)
