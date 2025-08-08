@@ -8586,7 +8586,7 @@
 				)
 			)
 		)
-		(property "Footprint" "badge-44con-2025:a12013100ux0116"
+		(property "Footprint" "badge-44con-2025:JS102011SAQN"
 			(at 148.59 74.93 0)
 			(effects
 				(font
@@ -8622,8 +8622,17 @@
 				(hide yes)
 			)
 		)
-		(property "manf#" "https://www.amazon.com/gp/product/B007QAJUUS"
+		(property "manf#" ""
 			(at 147.828 52.832 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "#LCSC" "C221660"
+			(at 139.446 66.548 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9871,7 +9880,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm"
+		(property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Bridged2Bar12_RoundedPad1.0x1.5mm"
 			(at 35.56 166.37 0)
 			(effects
 				(font
@@ -11341,7 +11350,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm"
+		(property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Bridged2Bar12_RoundedPad1.0x1.5mm"
 			(at 36.83 182.88 0)
 			(effects
 				(font
