@@ -8613,7 +8613,7 @@
 				(hide yes)
 			)
 		)
-		(property "provedor" "Amazon"
+		(property "provedor" "LCSC"
 			(at 142.494 65.786 0)
 			(effects
 				(font
