@@ -15,10 +15,20 @@
 #define BUTTON_LEFT     PC7 
 #define BUTTON_RIGHT    PD3
 
+// Leds in the badge
+#define LED1    PD5
+#define LED2    PD4
+#define LED3    PD6
+#define LED4    PA1
+
+#define JOY_SOUND 0 // On 0 because there's no buzzer connected in the CH32 chip
+#define BUZZER  PC3
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+// Oled defines
 #define JOY_OLED_init             OLED_init
 #define JOY_OLED_end              I2C_stop
 #define JOY_OLED_send(b)          I2C_write(b)
@@ -35,10 +45,10 @@ void JOY_init(void){
     funGpioInitAll();
 
     // Set buttons config
-    funPinMode(BUTTON_DOWN,   GPIO_CNF_IN_PUPD);
-    funPinMode(BUTTON_RIGHT,   GPIO_CNF_IN_PUPD);
+    funPinMode(BUTTON_DOWN, GPIO_CNF_IN_PUPD);
+    funPinMode(BUTTON_RIGHT, GPIO_CNF_IN_PUPD);
     funPinMode(BUTTON_LEFT, GPIO_CNF_IN_PUPD);
-    funPinMode(BUTTON_UP,     GPIO_CNF_IN_PUPD);
+    funPinMode(BUTTON_UP, GPIO_CNF_IN_PUPD);
 
     // Init buttons
     funDigitalWrite(BUTTON_DOWN,1);
@@ -46,11 +56,25 @@ void JOY_init(void){
     funDigitalWrite(BUTTON_LEFT,1);
     funDigitalWrite(BUTTON_UP,1);
 
+    // Set leds config
+    funPinMode(LED1, GPIO_CNF_OUT_PP);
+    funPinMode(LED2, GPIO_CNF_OUT_PP);
+    funPinMode(LED3, GPIO_CNF_OUT_PP);
+    funPinMode(LED4, GPIO_CNF_OUT_PP);
+
+    #if JOY_SOUND
+    funPinMode(BUZZER, GPIO_CNF_OUT_PP);
+    #endif
+
     // Init Oled
     OLED_init();
 }
 
-#define JOY_act_pressed()   1 //(!funDigitalRead(BUTTON_RIGHT))
+#define JOY_act_pressed() 1
+
+uint8_t JOY_START(){
+    return !funDigitalRead(BUTTON_UP) || !funDigitalRead(BUTTON_DOWN) || !funDigitalRead(BUTTON_LEFT) || !funDigitalRead(BUTTON_RIGHT); 
+} 
 
 uint8_t JOY_up_pressed(void){
     return funDigitalRead(BUTTON_UP);
@@ -85,9 +109,10 @@ uint16_t JOY_random(void) {
 void JOY_sound(uint8_t freq, uint8_t dur) {
     #if JOY_SOUND 
     while(dur--) {
-        DLY_us(255 - freq);
-        PIN_high(PIN_BEEP);
-        DLY_us(255 - freq);
+        JOY_DLY_us(255 - freq);
+        funDigitalWrite(BUZZER,1);
+        JOY_DLY_us(255 - freq);
+        funDigitalWrite(BUZZER,0);
     }
     #endif
 }

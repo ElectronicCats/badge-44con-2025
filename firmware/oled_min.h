@@ -131,7 +131,6 @@ void OLED_draw_bmp(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, const uint8_t
   }
 }
 
-
 #ifdef __cplusplus
 };
 #endif

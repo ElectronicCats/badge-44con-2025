@@ -24,6 +24,18 @@ uint8_t add;
 uint8_t dotsMem[9];
 int8_t dotscount;
 uint8_t Frame;
+
+uint8_t leds[4] = {
+	LED1,
+	LED2,
+	LED3,
+	LED4
+};
+
+uint8_t leds_levels [4] = {0};
+
+uint8_t counter_time = 0;
+
 enum
 {
     PACMAN = 0,
@@ -53,6 +65,7 @@ uint8_t SplitSpriteDecalageY(uint8_t decalage, uint8_t Input, uint8_t UPorDOWN);
 uint8_t SpriteWrite(uint8_t x, uint8_t y, PERSONAGE *Sprite);
 uint8_t return_if_sprite_present(uint8_t x, PERSONAGE *Sprite, uint8_t SpriteNumber);
 uint8_t background(uint8_t x, uint8_t y);
+void logo_44con_fun(void);
 
 // =================================================================================================
 //	GAME
@@ -64,6 +77,7 @@ void play_game(void){
         uint8_t t;
         PERSONAGE Sprite[5];
     NEWGAME:
+		// logo_44con_fun(); // Here is where we gonna put the logo 
         ResetVar();
         LIVE = 3;
         goto New;
@@ -118,7 +132,7 @@ void play_game(void){
         Sprite[4].guber = 0;
         while (1)
         {
-            // joystick
+            // The game will always starts because it always be true
             if (JOY_act_pressed())
                 StartGame(&Sprite[0]);
             if (INGAME)
@@ -210,6 +224,27 @@ int main(void)
     // Loop
 	play_game();
 }
+
+// ===================================================================================
+// 44con functions
+// ===================================================================================
+
+void logo_44con_fun(void)
+{
+	// Here needs to the function to fill the oled display
+	
+	/* CODE TO DISPLAY THE LOGO */
+
+	while (!JOY_START())
+	{
+		JOY_SLOWDOWN();
+	}
+}
+
+void leds_display(){
+	/* CODE TO CONTROL LEDS */
+}
+
 
 // ===================================================================================
 // Functions
