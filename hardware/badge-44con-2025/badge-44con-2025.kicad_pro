@@ -189,8 +189,7 @@
       "track_widths": [
         0.0,
         0.3,
-        0.5,
-        1.0
+        0.5
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -222,14 +221,6 @@
         {
           "diameter": 0.0,
           "drill": 0.0
-        },
-        {
-          "diameter": 0.6,
-          "drill": 0.3
-        },
-        {
-          "diameter": 0.8,
-          "drill": 0.4
         }
       ],
       "zones_allow_external_fillets": false
@@ -513,7 +504,7 @@
       "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "badge-44con-2025.step",
+      "step": "",
       "svg": "",
       "vrml": ""
     },
@@ -582,7 +573,7 @@
           "group_by": false,
           "label": "#LCSC",
           "name": "#LCSC",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
@@ -612,12 +603,6 @@
           "group_by": false,
           "label": "Mouser Price/Stock",
           "name": "Mouser Price/Stock",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Proveedor",
-          "name": "Proveedor",
           "show": false
         },
         {
@@ -655,6 +640,12 @@
           "label": "Exclude from Board",
           "name": "${EXCLUDE_FROM_BOARD}",
           "show": true
+        },
+        {
+          "group_by": false,
+          "label": "Proveedor",
+          "name": "Proveedor",
+          "show": false
         }
       ],
       "filter_string": "",
