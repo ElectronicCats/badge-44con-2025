@@ -110,11 +110,6 @@ int main(void)
                 if (LIVE < 3)
                 {
                     LIVE++;
-                    for (t = 0; t <= 4; t++)
-                    {
-                        JOY_sound(80, 100);
-                        JOY_DLY_ms(300);
-                    }
                 }
             }
         }
@@ -173,7 +168,18 @@ int main(void)
                     TimerGobeactive = 0;
                     Gobeactive = 0;
                 }
+
+                // This part is a condition when the pacman can eat the ghots
+                if (Gobeactive)
+                {
+                    funDigitalWrite(LED2,1);
+                }
+                else
+                {
+                    funDigitalWrite(LED2,0);
+                }
             }
+            
             if (Frame < 24)
                 Frame++;
             else
@@ -189,9 +195,9 @@ int main(void)
                 // If we die this will show on the red led
                 for(uint8_t i = 0; i<4; i++){
                     leds_display_num(0);
-                    JOY_DLY_ms(75);
+                    JOY_DLY_ms(150);
                     turn_off_all_leds();
-                    JOY_DLY_ms(75);
+                    JOY_DLY_ms(150);
                 }
                 
                 // Here we die
@@ -215,14 +221,6 @@ int main(void)
             if (Frame % 2 == 0)
             {
                 Tiny_Flip(0, &Sprite[0]);
-                if (INGAME == 1)
-                {
-                    for (uint8_t t = 0; t <= 139; t = t + 2)
-                    {
-                        JOY_sound((Music[t]) - 8, ((Music[t + 1]) - 100));
-                    }
-                    INGAME = 2;
-                }
             }
             else
             {
@@ -231,19 +229,22 @@ int main(void)
                     if (checkDotPresent(t))
                         break;
                     else if (t == 62)
-                    {
-                        for (uint8_t r = 0; r < 60; r++)
-                        {
-                            JOY_sound(2 + r, 10);
-                            JOY_sound(255 - r, 20);
+                    {   
+                        // Sequence on leds when you pass the PACMAN GAME
+                        for(uint8_t i = 0; i<2; i++){
+                            for(uint8_t j = 0; j<4; j++){
+                                funDigitalWrite(leds_on_badge[j],1);
+                                JOY_DLY_ms(200);
+                            }
+                            turn_off_all_leds();
+                            JOY_DLY_ms(200);
                         }
-                        JOY_DLY_ms(1000);
                         goto NEWLEVEL;
                     }
                 }
             }
-            if ((Gobeactive) && (Frame % 2 == 0))
-                JOY_sound((255 - TimerGobeactive), 1);
+
+            // Delay in the game
             JOY_SLOWDOWN();
         }
     }
@@ -387,16 +388,18 @@ uint8_t CollisionPac2Caracter(PERSONAGE *Sprite)
             {
                 if (Gobeactive)
                 {
+                    // Here is when the ghosts can be eaten
                     if (Sprite[t].guber != 1)
                     {
-                        JOY_sound(20, 100);
-                        JOY_sound(2, 100);
+                        funDigitalWrite(LED3, 1);
+                        JOY_DLY_ms(15);
+                        funDigitalWrite(LED3, 0);
                     }
                     Sprite[t].guber = 1;
                     ReturnCollision = 0;
                 }
                 else
-                {
+                {   
                     if (Sprite[t].guber == 1)
                     {
                         ReturnCollision = 0;
@@ -847,8 +850,10 @@ uint8_t DotsWrite(uint8_t x, uint8_t y, PERSONAGE *Sprite)
                 }
                 else
                 {
-                    JOY_sound(10, 10);
-                    JOY_sound(50, 10);
+                    // Here shows when eats a dot
+                    funDigitalWrite(LED4, 1);
+                    JOY_DLY_ms(15);
+                    funDigitalWrite(LED4, 0);
                 }
             }
         }
