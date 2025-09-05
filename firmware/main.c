@@ -35,9 +35,6 @@ uint8_t leds_on_badge[4] = {
 	LED4
 };
 
-// A buffer to display the values on the leds
-uint8_t leds_states [4] = {0};
-
 // This is a counter for every 20 ms 
 uint8_t counter_time = 0;
 
@@ -76,9 +73,12 @@ uint8_t background(uint8_t x, uint8_t y);
 void logo_44con_fun(void);
 void turn_off_all_leds();
 void turn_on_all_leds();
-void leds_display();
 void leds_display_num(uint8_t num);
 void sequence_waiting();
+void eat_ghost_sequence(void);
+void die_sequence(void);
+void new_game_sequence(void);
+void new_level_sequence(void);
 
 // =================================================================================================
 //	MAIN FUNCTION
@@ -168,16 +168,7 @@ int main(void)
                     TimerGobeactive = 0;
                     Gobeactive = 0;
                 }
-
-                // This part is a condition when the pacman can eat the ghots
-                if (Gobeactive)
-                {
-                    funDigitalWrite(LED2,1);
-                }
-                else
-                {
-                    funDigitalWrite(LED2,0);
-                }
+                eat_ghost_sequence();
             }
             
             if (Frame < 24)
@@ -188,18 +179,7 @@ int main(void)
                 RefreshCaracter(&Sprite[0]);
             else
             {
-
-                // Turn off all leds
-                turn_off_all_leds();
-
-                // If we die this will show on the red led
-                for(uint8_t i = 0; i<4; i++){
-                    leds_display_num(0);
-                    JOY_DLY_ms(150);
-                    turn_off_all_leds();
-                    JOY_DLY_ms(150);
-                }
-                
+                die_sequence();
                 // Here we die
                 if (LIVE > 0)
                 {
@@ -207,14 +187,7 @@ int main(void)
                     goto RESTARTLEVEL;
                 }
                 else{
-
-                    for(uint8_t i = 0; i<2; i++){
-                        turn_on_all_leds();
-                        JOY_DLY_ms(500);
-                        turn_off_all_leds();
-                        JOY_DLY_ms(500);
-                    }
-
+                    new_game_sequence();
                     goto NEWGAME;
                 }
             }
@@ -230,15 +203,7 @@ int main(void)
                         break;
                     else if (t == 62)
                     {   
-                        // Sequence on leds when you pass the PACMAN GAME
-                        for(uint8_t i = 0; i<2; i++){
-                            for(uint8_t j = 0; j<4; j++){
-                                funDigitalWrite(leds_on_badge[j],1);
-                                JOY_DLY_ms(200);
-                            }
-                            turn_off_all_leds();
-                            JOY_DLY_ms(200);
-                        }
+                        new_level_sequence();
                         goto NEWLEVEL;
                     }
                 }
@@ -287,13 +252,6 @@ void turn_on_all_leds()
     }
 }
 
-void leds_display()
-{
-	for(uint8_t i = 0; i<4; i++){
-        funDigitalWrite(leds_on_badge[i],leds_states[i]);
-    }
-}
-
 void leds_display_num(uint8_t num)
 {
     if(num>3) return;
@@ -302,7 +260,6 @@ void leds_display_num(uint8_t num)
     funDigitalWrite(leds_on_badge[num],1);
 }
 
-// Here are the light sequences
 void sequence_waiting()
 {
 
@@ -332,6 +289,56 @@ void sequence_waiting()
     }
 
     counter_time++;
+}
+
+void eat_ghost_sequence(void)
+{
+    // This part is a condition when the pacman can eat the ghots
+    if (Gobeactive)
+    {
+        funDigitalWrite(LED2,1);
+    }
+    else
+    {
+        funDigitalWrite(LED2,0);
+    }
+}
+
+void die_sequence(void)
+{
+    // Turn off all leds
+    turn_off_all_leds();
+
+    // If we die this will show on the red led
+    for(uint8_t i = 0; i<4; i++){
+        leds_display_num(0);
+        JOY_DLY_ms(150);
+        turn_off_all_leds();
+        JOY_DLY_ms(150);
+    }
+}
+
+void new_game_sequence(void)
+{
+    for(uint8_t i = 0; i<2; i++){
+        turn_on_all_leds();
+        JOY_DLY_ms(500);
+        turn_off_all_leds();
+        JOY_DLY_ms(500);
+    }
+}
+
+void new_level_sequence(void)
+{
+    // Sequence on leds when you pass the PACMAN GAME
+    for(uint8_t i = 0; i<2; i++){
+        for(uint8_t j = 0; j<4; j++){
+            funDigitalWrite(leds_on_badge[j],1);
+            JOY_DLY_ms(200);
+        }
+        turn_off_all_leds();
+        JOY_DLY_ms(200);
+    }
 }
 
 // ===================================================================================
