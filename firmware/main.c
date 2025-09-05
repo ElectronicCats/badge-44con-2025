@@ -1,9 +1,11 @@
 
 /**
- * This is the main project for the badge 
+ * This is the main project for the badge 44con 
  * 
+ * With love from Mexico to you all, this is for you made for Electronic Cats
  * 
- * 
+ * Credits to:
+ *  Electronic Cats Team
  */
 
 #include "ch32fun.h"
@@ -25,16 +27,22 @@ uint8_t dotsMem[9];
 int8_t dotscount;
 uint8_t Frame;
 
-uint8_t leds[4] = {
+// Save the 
+uint8_t leds_on_badge[4] = {
 	LED1,
 	LED2,
 	LED3,
 	LED4
 };
 
-uint8_t leds_levels [4] = {0};
+// A buffer to display the values on the leds
+uint8_t leds_states [4] = {0};
 
+// This is a counter for every 20 ms 
 uint8_t counter_time = 0;
+
+// For the waiting sequence
+uint8_t number_of_sequence_in_waiting_sequence = 0;
 
 enum
 {
@@ -66,18 +74,30 @@ uint8_t SpriteWrite(uint8_t x, uint8_t y, PERSONAGE *Sprite);
 uint8_t return_if_sprite_present(uint8_t x, PERSONAGE *Sprite, uint8_t SpriteNumber);
 uint8_t background(uint8_t x, uint8_t y);
 void logo_44con_fun(void);
+void turn_off_all_leds();
+void turn_on_all_leds();
+void leds_display();
+void leds_display_num(uint8_t num);
+void sequence_waiting();
 
 // =================================================================================================
-//	GAME
+//	MAIN FUNCTION
 // =================================================================================================
+int main(void)
+{
+    // Setup
+    JOY_init();
 
-void play_game(void){
+    // Turn off all leds
+    turn_off_all_leds();
+
+    // Loop
 	while (1)
     {
         uint8_t t;
         PERSONAGE Sprite[5];
     NEWGAME:
-		// logo_44con_fun(); // Here is where we gonna put the logo 
+		logo_44con_fun(); // Here is where we gonna put the logo 
         ResetVar();
         LIVE = 3;
         goto New;
@@ -213,22 +233,11 @@ void play_game(void){
     }
 }
 
-// =================================================================================================
-//	MAIN FUNCTION
-// =================================================================================================
-int main(void)
-{
-    // Setup
-    JOY_init();
-
-    // Loop
-	play_game();
-}
-
 // ===================================================================================
 // 44con functions
 // ===================================================================================
 
+// Function to wait for the 
 void logo_44con_fun(void)
 {
 	// Here needs to the function to fill the oled display
@@ -237,14 +246,73 @@ void logo_44con_fun(void)
 
 	while (!JOY_START())
 	{
+        sequence_waiting();
 		JOY_SLOWDOWN();
 	}
+
+    turn_off_all_leds();
 }
 
-void leds_display(){
-	/* CODE TO CONTROL LEDS */
+void turn_off_all_leds()
+{
+    for(uint8_t i = 0; i<4; i++){
+        funDigitalWrite(leds_on_badge[i],0);
+    }
 }
 
+void turn_on_all_leds()
+{
+    for(uint8_t i = 0; i<4; i++){
+        funDigitalWrite(leds_on_badge[i],1);
+    }
+}
+
+void leds_display()
+{
+	for(uint8_t i = 0; i<4; i++){
+        funDigitalWrite(leds_on_badge[i],leds_states[i]);
+    }
+}
+
+void leds_display_num(uint8_t num)
+{
+    if(num>3) return;
+
+    turn_off_all_leds();
+    funDigitalWrite(leds_on_badge[num],1);
+}
+
+// Here are the light sequences
+void sequence_waiting()
+{
+
+    // Every 500 ms, this counter is to get the 
+    if(counter_time == 10){
+        if(number_of_sequence_in_waiting_sequence < 8)
+        {
+            leds_display_num(number_of_sequence_in_waiting_sequence%4);
+        }
+        else if(number_of_sequence_in_waiting_sequence > 7 && number_of_sequence_in_waiting_sequence < 12)
+        {
+            funDigitalWrite(leds_on_badge[number_of_sequence_in_waiting_sequence - 8], 1);
+        }
+        else if(number_of_sequence_in_waiting_sequence > 11 && number_of_sequence_in_waiting_sequence < 16)
+        {
+            funDigitalWrite(leds_on_badge[number_of_sequence_in_waiting_sequence - 12], 0);
+        }
+        else if (number_of_sequence_in_waiting_sequence > 15)
+        {
+            leds_display_num(3 - (number_of_sequence_in_waiting_sequence%4));
+        }
+        number_of_sequence_in_waiting_sequence++;
+        if(number_of_sequence_in_waiting_sequence == 24){
+            number_of_sequence_in_waiting_sequence = 0;
+        }
+        counter_time = 0;
+    }
+
+    counter_time++;
+}
 
 // ===================================================================================
 // Functions

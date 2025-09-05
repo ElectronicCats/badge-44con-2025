@@ -57,13 +57,13 @@ void JOY_init(void){
     funDigitalWrite(BUTTON_UP,1);
 
     // Set leds config
-    funPinMode(LED1, GPIO_CNF_OUT_PP);
-    funPinMode(LED2, GPIO_CNF_OUT_PP);
-    funPinMode(LED3, GPIO_CNF_OUT_PP);
-    funPinMode(LED4, GPIO_CNF_OUT_PP);
+    funPinMode(LED1, GPIO_Speed_10MHz | GPIO_CNF_OUT_PP);
+    funPinMode(LED2, GPIO_Speed_10MHz | GPIO_CNF_OUT_PP);
+    funPinMode(LED3, GPIO_Speed_10MHz | GPIO_CNF_OUT_PP);
+    funPinMode(LED4, GPIO_Speed_10MHz | GPIO_CNF_OUT_PP);
 
     #if JOY_SOUND
-    funPinMode(BUZZER, GPIO_CNF_OUT_PP);
+    funPinMode(BUZZER, GPIO_Speed_10MHz | GPIO_CNF_OUT_PP);
     #endif
 
     // Init Oled
