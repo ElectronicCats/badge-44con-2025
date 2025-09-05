@@ -38,6 +38,11 @@ uint8_t leds_on_badge[4] = {
 // This is a counter for every 20 ms 
 uint8_t counter_time = 0;
 
+// This is a counter only for the screen
+uint8_t oled_counter = 0;
+uint8_t state_display_init = 0;
+uint8_t once = 0;
+
 // For the waiting sequence
 uint8_t number_of_sequence_in_waiting_sequence = 0;
 
@@ -79,6 +84,7 @@ void eat_ghost_sequence(void);
 void die_sequence(void);
 void new_game_sequence(void);
 void new_level_sequence(void);
+void display_waiting(void);
 
 // =================================================================================================
 //	MAIN FUNCTION
@@ -222,19 +228,14 @@ int main(void)
 // Function to wait for the 
 void logo_44con_fun(void)
 {
-	// Here needs to the function to fill the oled display
-	
-	/* CODE TO DISPLAY THE LOGO */
-
 	while (!JOY_START())
 	{
+        display_waiting();
         sequence_waiting();
 		JOY_SLOWDOWN();
 	}
-
     number_of_sequence_in_waiting_sequence = 0;
     counter_time = 0;
-
     turn_off_all_leds();
 }
 
@@ -262,7 +263,6 @@ void leds_display_num(uint8_t num)
 
 void sequence_waiting()
 {
-
     // Every 500 ms, this counter is to get the 
     if(counter_time == 10){
         if(number_of_sequence_in_waiting_sequence < 8)
@@ -289,6 +289,49 @@ void sequence_waiting()
     }
 
     counter_time++;
+}
+
+void display_waiting(void)
+{
+    switch (state_display_init)
+    {
+    case 0:
+        if(once){
+            OLED_draw_bmp(0, 0, 128, 8, logo_44Con);
+            once = 0;
+        }
+
+        oled_counter++;
+
+        if(oled_counter > 100){
+            oled_counter = 0;
+            state_display_init = 1;
+            once = 1;
+        }
+
+        break;
+
+    case 1:
+
+        if(once){
+            OLED_draw_bmp(0, 0, 128, 8, logo_44Con_Inverted);
+            once = 0;
+        }
+
+        oled_counter++;
+
+        if(oled_counter > 20){
+            oled_counter = 0;
+            state_display_init = 0;
+            once = 1;
+        }
+
+        break;
+    
+    default:
+        break;
+    }
+    oled_counter++;
 }
 
 void eat_ghost_sequence(void)
