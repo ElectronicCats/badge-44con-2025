@@ -27,3 +27,14 @@ hardware/**/*.xml
 hardware/**/*.csv
 
 hardware/Template-KiCAD-Project-CI-backups/
+
+# Ignore the ch32fun folder
+firmware/ch32fun/*
+*.bin
+*.elf
+*.hex
+*.lst
+*.map
+
+# Ignore .vscode
+*.vscode
