@@ -182,19 +182,35 @@ int main(void)
                 RefreshCaracter(&Sprite[0]);
             else
             {
-                JOY_sound(100, 200);
-                JOY_sound(75, 200);
-                JOY_sound(50, 200);
-                JOY_sound(25, 200);
-                JOY_sound(12, 200);
-                JOY_DLY_ms(400);
+
+                // Turn off all leds
+                turn_off_all_leds();
+
+                // If we die this will show on the red led
+                for(uint8_t i = 0; i<4; i++){
+                    leds_display_num(0);
+                    JOY_DLY_ms(75);
+                    turn_off_all_leds();
+                    JOY_DLY_ms(75);
+                }
+                
+                // Here we die
                 if (LIVE > 0)
                 {
                     LIVE--;
                     goto RESTARTLEVEL;
                 }
-                else
+                else{
+
+                    for(uint8_t i = 0; i<2; i++){
+                        turn_on_all_leds();
+                        JOY_DLY_ms(500);
+                        turn_off_all_leds();
+                        JOY_DLY_ms(500);
+                    }
+
                     goto NEWGAME;
+                }
             }
             if (Frame % 2 == 0)
             {
@@ -249,6 +265,9 @@ void logo_44con_fun(void)
         sequence_waiting();
 		JOY_SLOWDOWN();
 	}
+
+    number_of_sequence_in_waiting_sequence = 0;
+    counter_time = 0;
 
     turn_off_all_leds();
 }
