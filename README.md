@@ -26,7 +26,7 @@ The Addon is located on the front side of the board, and the connections are as 
 <img src="hardware/badge-44con-2025/IMAGES/addon.png" alt="addon" width="50%"/>
 
 # Boost circuit
-It raises the voltage from 5 V to 9 V for the RF detector.The Boost circuit must be placed on the rear side of the board, as shown in the image. 
+It raises the voltage from 5 V to 9 V for the RF detector. The Boost circuit must be placed on the rear side of the board, as shown in the image. 
 
 <img src="hardware/badge-44con-2025/IMAGES/boost_image.png" alt="Boost image" width="300"/>
 <br>
@@ -57,22 +57,6 @@ For the buzzer, please solder it as follows:
 <img src="hardware/badge-44con-2025/IMAGES/buzzer_image.png" alt="Buzzer Image" width="340"/>
 <img src="hardware/badge-44con-2025/IMAGES/buzzer.png" alt="Potentiometer Diagram" width="300"/>
 
-![](hardware/badge-44con-2025/IMAGES/addon.png)
-
-# Boost circuit
-The Boost circuit must be placed on the rear side of the board, as shown in the image. It raises the voltage from 5 V to 9 V for the RF detector.
-
-![](hardware/badge-44con-2025/IMAGES/boost.png)
-
-# I²C jumper 
-The I²C jumpers are located on the rear side of the board (JP3 for SCL and JP2 for SDA). These determine whether the ESP32 or the CH32 will control the OLED display. By default, the CH32 controls the display. To change control, the pads must be cut to separate them.
-
-![](hardware/badge-44con-2025/IMAGES/i2c.png)
-
-# Potenciometer 
-The potentiometer must be installed on the rear side of the board, ensuring that its notch fits into the corresponding slot, allowing the value to be adjusted from the front side of the PCB.
-
-![](hardware/badge-44con-2025/IMAGES/pot.png)
 
 # RF Detector 
 It detects hidden wireless devices by measuring RF signal strength and displaying results on an OLED screen, with optional buzzer alerts.
@@ -83,9 +67,6 @@ For more information about the functionality, please refer to the following repo
 <img src="hardware/badge-44con-2025/IMAGES/rf_detector_image.png" alt="RF Detector Image" width="300"/>
 <br>
 <img src="hardware/badge-44con-2025/IMAGES/rf_detector.png" alt="RF Detector Diagram" width="300"/>
-
-
-
 
 This project uses and builds upon the work of rfhunter by RamboRogers.
 
