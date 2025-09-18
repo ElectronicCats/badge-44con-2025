@@ -8,6 +8,9 @@ When the shield is installed, the badge will only operate the OLED display with 
 
 <img src="hardware/badge-44con-2025/IMAGES/diagram_ch32.png" alt="Diagram CH32" width="65%"/>
 
+<img src="hardware/badge-44con-2025/IMAGES/add_on.png" alt="Diagram CH32" width="40%"/>
+(Badge with shield)
+
 #
 For the best possible experience with the badge, it is recommended to solder the ESP32 with the following components:
 
