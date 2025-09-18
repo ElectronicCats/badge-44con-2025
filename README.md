@@ -20,6 +20,10 @@ If you solder the shield you only need to solder the bended pins shown at the ph
 #
 For the best possible experience with the badge, it is recommended to solder the ESP32 with the following components:
 
+ESP32 Wemos D1 module
+
+<img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/d1856e95-a4e5-4d97-97e0-c3449f6afec5" />
+
 Buzzer
 
 MT3608 Boost Converter
